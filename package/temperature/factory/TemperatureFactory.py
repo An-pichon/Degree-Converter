@@ -2,6 +2,7 @@ from typing import Union
 
 from package.temperature.units.Celsius import TemperatureCelsius
 from package.temperature.units.Fahrenheit import TemperatureFahrenheit
+from package.temperature.units.Kelvin import TemperatureKelvin
 from package.temperature.units.TemperatureUnit import TemperatureUnit
 
 
@@ -14,6 +15,8 @@ class TemperatureFactory:
             return TemperatureFactory._create_celsius(temperature)
         elif unit is TemperatureUnit.FAHRENHEIT:
             return TemperatureFactory._create_fahrenheit(temperature)
+        elif unit is TemperatureUnit.KELVIN:
+            return TemperatureFactory._create_kelvin(temperature)
         else:
             raise Exception(f"Unknown '{unit}' temperature unit")
 
@@ -24,3 +27,7 @@ class TemperatureFactory:
     @staticmethod
     def _create_fahrenheit(temperature: Union[int, float]):
         return TemperatureFahrenheit(temperature)
+
+    @staticmethod
+    def _create_kelvin(temperature: Union[int, float]):
+        return TemperatureKelvin(temperature)
