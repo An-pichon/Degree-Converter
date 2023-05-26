@@ -9,7 +9,11 @@ from package.temperature.parser import parse_float
 from package.temperature.units.TemperatureUnit import TemperatureUnit
 from package.temperature.validator import is_float
 
+# Constants
+VERSION = "1.0.0"
 
+
+# Starts a conversion workflow
 def convert():
     # 1. Ask for source user inputs
     source_temperature_unit = PyInquirer.prompt([
@@ -59,8 +63,9 @@ def convert():
     )
 
 
+# Program logic
 def main():
-    print("[ Degree Converter v0.1 ]")
+    print(f"[ Degree Converter v{VERSION} ]")
     again = True
 
     while again:
