@@ -20,6 +20,9 @@ class Temperature(ABC):
     @abstractmethod
     def to_celsius(self): pass
 
+    @abstractmethod
+    def to_kelvin(self): pass
+
     def to(self, unit: TemperatureUnit):
         return self.__getattribute__(f"to_{unit.value}")()
 
