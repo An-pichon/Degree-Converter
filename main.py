@@ -20,7 +20,7 @@ def convert():
         {
             'type': "list",
             'name': "unit",
-            'message': "Which source temperature unit you want to convert?",
+            'message': "Which source temperature unit do you want to convert?",
             'choices': [name for name in dir(TemperatureUnit) if not name.startswith('_')]
         }
     ])['unit']
@@ -42,7 +42,7 @@ def convert():
         {
             'type': "list",
             'name': "unit",
-            'message': f"In which unit you want to convert {source_temperature}° {source_unit.value} to?",
+            'message': f"In which unit do you want to convert {source.to_string()} to?",
             'choices': [
                 name for name in dir(TemperatureUnit) if
                 not name.startswith('_')
@@ -53,14 +53,21 @@ def convert():
     destination_unit = TemperatureUnit[destination_temperature_unit]
 
     # 5. Convert the source temperature to destination unit
+    source_destination_formula = source.get_formula_to(destination_unit)
     destination = source.to(unit=destination_unit)
 
-    # 6. Print converted temperature!
+    # 6. Print conversion formula & result!
+    print(f"{Style.BRIGHT}")
+    print(f"{Fore.GREEN}Input{Fore.RESET}       -> {Fore.GREEN}{source.to_string()}{Fore.RESET}")
+    print()
+    print(f"{Fore.RED}Destination{Fore.RESET} -> {Fore.RED}{destination_unit.value}{Fore.RESET}")
+    print(f"{Fore.YELLOW}Formula{Fore.RESET}     -> {Fore.YELLOW}{source_destination_formula.to_string()}{Fore.RESET}")
     print(
-        f"{source.to_string()} {Style.BRIGHT}{Fore.YELLOW}",
-        "<{{===}}>"
-        f"{Fore.RESET}{Style.RESET_ALL} {destination.to_string()}"
+        f"{' ' * len('Formula    ')} -> {Fore.YELLOW}{source_destination_formula.represent(source_temperature)}{Fore.RESET}"
     )
+    print()
+    print(f"{Fore.RED}Output{Fore.RESET}      -> {Fore.RED}{destination.to_string()}{Fore.RESET}")
+    print(f"{Style.RESET_ALL}")
 
 
 # Program logic
