@@ -10,7 +10,7 @@ from package.temperature.units.TemperatureUnit import TemperatureUnit
 from package.temperature.validator import is_float
 
 # Constants
-VERSION = "1.0.0"
+VERSION = "2.0"
 
 
 # Starts a conversion workflow
